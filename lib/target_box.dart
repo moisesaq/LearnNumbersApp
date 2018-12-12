@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:learn_numbers_app/box.dart';
 import 'package:learn_numbers_app/number.dart';
 
-class TargetBox extends StatefulWidget {
-  final Offset initPosition;
-  final Number number;
+class TargetBox extends Box {
 
   TargetBox({
-    @required this.initPosition,
-    @required this.number,
-  });
+    @required initPosition,
+    @required number,
+  }): super(initPosition: initPosition, number: number);
 
   @override
   State<StatefulWidget> createState() => _TargetBoxState();
 }
 
 class _TargetBoxState extends State<TargetBox> {
-  Color caughtColor = Colors.grey;
+  Color caughtColor = Colors.grey.shade300;
   Offset _position;
 
   @override
@@ -41,16 +40,8 @@ class _TargetBoxState extends State<TargetBox> {
           List<dynamic> accepted,
           List<dynamic> rejected,
         ) {
-          return Container(
-            width: 150.0,
-            height: 150.0,
-            decoration: BoxDecoration(
-              color: accepted.isEmpty ? caughtColor : Colors.grey.shade200,
-            ),
-            child: Center(
-              child: Text("Drag here!"),
-            ),
-          );
+          final color = accepted.isEmpty ? caughtColor : Colors.grey.shade300;
+          return widget.buildBox(size: 150.0, numberSize: 15.0, boxColor: color);
         },
       ),
     );

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:learn_numbers_app/number.dart';
+import 'package:learn_numbers_app/box.dart';
 
-class DragBox extends StatefulWidget {
-  final Offset initPosition;
-  final Number number;
+class DragBox extends Box {
 
   DragBox({
-    @required this.initPosition,
-    @required this.number,
-  });
+    @required initPosition,
+    @required number,
+  }): super(initPosition: initPosition, number: number);
 
   @override
   State<StatefulWidget> createState() => _DragBoxState();
@@ -30,7 +28,7 @@ class _DragBoxState extends State<DragBox> {
       top: _position.dy,
       child: Draggable(
         data: widget.number,
-        child: buildBox(size: 100.0, numberSize: 20),
+        child: widget.buildBox(size: 100.0, numberSize: 20),
         /*onDraggableCanceled: (velocity, offset) {
           updatePosition(offset);
         },*/
@@ -43,27 +41,7 @@ class _DragBoxState extends State<DragBox> {
             goBackLastPosition();
           }
         },
-        feedback: buildBox(size: 120.0, numberSize: 18, colorOpacity: 0.5),
-      ),
-    );
-  }
-
-  Widget buildBox(
-      {@required double size,
-        @required double numberSize,
-        double colorOpacity = 1.0}) {
-    return Container(
-      width: size,
-      height: size,
-      color: widget.number.color.withOpacity(colorOpacity),
-      child: Center(
-        child: Text(
-          widget.number.value.toString(),
-          style: TextStyle(
-              color: Colors.white,
-              decoration: TextDecoration.none,
-              fontSize: numberSize),
-        ),
+        feedback: widget.buildBox(size: 120.0, numberSize: 18, boxColor: widget.number.color.withOpacity(0.5)),
       ),
     );
   }
