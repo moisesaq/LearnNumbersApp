@@ -39,37 +39,9 @@ class _HomePageState extends State<HomePage> {
             DragBox(initPosition: Offset(220.0, 20.0), number: num2),
             TargetBox(initPosition: Offset(20.0, 300.0), number: num1),
             TargetBox(initPosition: Offset(220.0, 300.0), number: num2),
-            //buildTargetBox(),
           ],
         ),
       ),
-    );
-  }
-
-  Widget buildTargetBox() {
-    return Positioned(
-      left: 100.0,
-      bottom: 0.0,
-      child: DragTarget(onWillAccept: (number) {
-        return true;
-      }, onAccept: (Number number) {
-        caughtColor = number.color;
-      }, builder: (
-        BuildContext context,
-        List<dynamic> accepted,
-        List<dynamic> rejected,
-      ) {
-        return Container(
-          width: 200.0,
-          height: 200.0,
-          decoration: BoxDecoration(
-            color: accepted.isEmpty ? caughtColor : Colors.grey.shade200,
-          ),
-          child: Center(
-            child: Text("Drag here!"),
-          ),
-        );
-      }),
     );
   }
 }

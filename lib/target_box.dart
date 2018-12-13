@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:learn_numbers_app/box.dart';
 import 'package:learn_numbers_app/number.dart';
+import 'package:learn_numbers_app/box_animated.dart';
 
 class TargetBox extends Box {
-
   TargetBox({
     @required initPosition,
     @required number,
-  }): super(initPosition: initPosition, number: number);
+  }) : super(initPosition: initPosition, number: number);
 
   @override
   State<StatefulWidget> createState() => _TargetBoxState();
 }
 
-class _TargetBoxState extends State<TargetBox> {
-  Color caughtColor = Colors.grey.shade300;
+class _TargetBoxState extends State<TargetBox>
+    with SingleTickerProviderStateMixin {
+
+  Color selectedColor = Colors.grey.shade300;
   Offset _position;
 
   @override
@@ -33,15 +35,24 @@ class _TargetBoxState extends State<TargetBox> {
           return number.value == widget.number.value;
         },
         onAccept: (Number number) {
-          caughtColor = number.color;
+          selectedColor = number.color;
         },
         builder: (
           BuildContext context,
           List<dynamic> accepted,
           List<dynamic> rejected,
         ) {
-          final color = accepted.isEmpty ? caughtColor : Colors.grey.shade300;
-          return widget.buildBox(size: 150.0, numberSize: 15.0, boxColor: color);
+          //final color = accepted.isEmpty ? caughtColor : Colors.grey.shade300;
+          return accepted.isEmpty
+              ? BoxAnimated(
+                  label: widget.number.value.toString(),
+                  color: selectedColor,
+                )
+              : widget.buildBox(
+                  size: 150.0,
+                  numberSize: 15.0,
+                  boxColor: Colors.grey.shade300,
+                );
         },
       ),
     );

@@ -10,6 +10,7 @@ class DragBox extends Box {
 
   @override
   State<StatefulWidget> createState() => _DragBoxState();
+
 }
 
 class _DragBoxState extends State<DragBox> {
