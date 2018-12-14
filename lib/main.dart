@@ -26,8 +26,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Color caughtColor = Colors.grey;
 
-  final num1 = Number(1, Colors.deepOrange);
-  final num2 = Number(2, Colors.blueAccent);
+  final num1 = Number(value: 1, color: Colors.deepOrange);
+  final num2 = Number(value: 2, color: Colors.blueAccent);
 
   @override
   Widget build(BuildContext context) {

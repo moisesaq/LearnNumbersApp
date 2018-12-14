@@ -15,7 +15,6 @@ class TargetBox extends Box {
 
 class _TargetBoxState extends State<TargetBox>
     with SingleTickerProviderStateMixin {
-
   Color selectedColor = Colors.grey.shade300;
   Offset _position;
 
@@ -37,11 +36,8 @@ class _TargetBoxState extends State<TargetBox>
         onAccept: (Number number) {
           selectedColor = number.color;
         },
-        builder: (
-          BuildContext context,
-          List<dynamic> accepted,
-          List<dynamic> rejected,
-        ) {
+        builder: (BuildContext context, List<dynamic> accepted,
+            List<dynamic> rejected) {
           //final color = accepted.isEmpty ? caughtColor : Colors.grey.shade300;
           return accepted.isEmpty
               ? BoxAnimated(
