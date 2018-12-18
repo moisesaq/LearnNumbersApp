@@ -45,6 +45,11 @@ class _BoxAnimatedState extends State<BoxAnimated>
         curve: Curves.elasticInOut,
       ),
     );
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.forward) {
+        print("Animation started");
+      }
+    });
     _controller.forward();
   }
 

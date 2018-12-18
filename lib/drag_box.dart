@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learn_numbers_app/box.dart';
+import 'package:audioplayers/audio_cache.dart';
 
 class DragBox extends Box {
   DragBox({
@@ -18,6 +19,8 @@ class _DragBoxState extends State<DragBox> with TickerProviderStateMixin {
 
   AnimationController _controller;
   Animation<Offset> offsetTween;
+
+  AudioCache audioCache = AudioCache();
 
   @override
   void initState() {
@@ -72,11 +75,21 @@ class _DragBoxState extends State<DragBox> with TickerProviderStateMixin {
     });
     setUpAnimation();
     _controller.forward();
+    playAudioFailed();
   }
 
   void updateColor() {
     setState(() {
       _color = _color.withOpacity(0.2);
     });
+    playAudioSuccessful();
+  }
+
+  void playAudioSuccessful() {
+    audioCache.play('homero-woohoo.mp3');
+  }
+
+  void playAudioFailed() {
+    audioCache.play('homero-ouch.mp3');
   }
 }

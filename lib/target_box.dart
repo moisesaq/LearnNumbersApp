@@ -30,27 +30,24 @@ class _TargetBoxState extends State<TargetBox>
       left: _position.dx,
       top: _position.dy,
       child: DragTarget(
-        onWillAccept: (number) {
-          return number.value == widget.number.value;
-        },
-        onAccept: (Number number) {
-          selectedColor = number.color;
-        },
-        builder: (BuildContext context, List<dynamic> accepted,
-            List<dynamic> rejected) {
-          //final color = accepted.isEmpty ? caughtColor : Colors.grey.shade300;
-          return accepted.isEmpty
-              ? BoxAnimated(
-                  label: widget.number.value.toString(),
-                  color: selectedColor,
-                )
-              : widget.buildBox(
-                  size: 150.0,
-                  numberSize: 15.0,
-                  boxColor: Colors.grey.shade300,
-                );
-        },
-      ),
+          onWillAccept: (number) => number.value == widget.number.value,
+          onAccept: (Number number) => selectedColor = number.color,
+          builder: (BuildContext context, List<dynamic> accepted,
+                  List<dynamic> rejected) =>
+              checkAccepted(accepted)),
     );
+  }
+
+  Widget checkAccepted(List<dynamic> accepted) {
+    return accepted.isEmpty
+        ? BoxAnimated(
+            label: widget.number.value.toString(),
+            color: selectedColor,
+          )
+        : widget.buildBox(
+            size: 150.0,
+            numberSize: 15.0,
+            boxColor: Colors.grey.shade300,
+          );
   }
 }
