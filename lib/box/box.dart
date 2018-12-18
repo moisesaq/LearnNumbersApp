@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learn_numbers_app/number.dart';
+import 'package:learn_numbers_app/model/number.dart';
 
 abstract class Box extends StatefulWidget {
   final Offset initPosition;
@@ -10,11 +10,7 @@ abstract class Box extends StatefulWidget {
     @required this.number,
   });
 
-  Widget buildBox({
-    @required double size,
-    @required double numberSize,
-    Color boxColor,
-  }) {
+  Widget buildBox({@required double size, @required double fontSize, Color boxColor}) {
     return Container(
       width: size,
       height: size,
@@ -24,11 +20,8 @@ abstract class Box extends StatefulWidget {
       ),
       child: Center(
         child: Text(
-          number.value.toString(),
-          style: TextStyle(
-              color: Colors.white,
-              decoration: TextDecoration.none,
-              fontSize: numberSize),
+          number.word,
+          style: TextStyle(color: Colors.white, decoration: TextDecoration.none, fontSize: fontSize),
         ),
       ),
     );
